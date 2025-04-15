@@ -1,0 +1,38 @@
+version: 2
+
+models:
+  - name: command_executions
+    description: Events of each instance of command execution by user within the Warp Terminal
+    columns:
+      - name: user_id
+        description: Unique identifier for user
+        data_type: varchar
+        data_tests:
+          - unique
+          - not_null
+      - name: event_timestamp
+        description: Event timestamp of command execution
+        data_type: timestamp(9)
+        data_tests:
+          - not_null
+
+  - name: users
+    description: Events of each instance of command execution by user within the Warp Terminal
+    columns:
+      - name: user_id
+        description: Unique identifier for user
+        data_type: varchar
+        data_tests:
+          - unique
+          - not_null
+      - name: account_created_timestamp
+        description: Timestamp of user account creation
+        data_type: timestamp(9)
+        data_tests:
+          - not_null
+      - name: role
+        description: Developer user claimed to be
+        data_type: varchar
+        data_tests:
+          - accepted_values:
+              values: ['devops', 'frontend', 'backend']
