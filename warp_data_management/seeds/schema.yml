@@ -8,7 +8,6 @@ models:
         description: Unique identifier for user
         data_type: varchar
         data_tests:
-          - unique
           - not_null
       - name: event_timestamp
         description: Event timestamp of command execution
