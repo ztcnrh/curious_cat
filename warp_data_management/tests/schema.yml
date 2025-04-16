@@ -1,0 +1,12 @@
+version: 2
+
+tests:
+  - name: test_int_user_command_engagement_summary_monthly
+    description: >
+      This test verifies that the sum of all user categories (new, retained, churned, resurrected, and inactive) 
+      equals the total number of records in the table. This ensures that:
+      - Every record is properly categorized
+      - No record is double-counted
+      - No record is missing a category
+      
+      The test will fail if there's any discrepancy between the sum of all categories and the total record count.

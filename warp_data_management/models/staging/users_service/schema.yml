@@ -1,0 +1,23 @@
+version: 2
+
+models:
+  - name: stg_users
+    description: Events of each instance of command execution by user within the Warp Terminal
+    columns:
+      - name: user_id
+        description: Unique identifier for user
+        data_type: varchar
+        data_tests:
+          - unique
+          - not_null
+      - name: account_created_ts
+        description: Timestamp of user account creation
+        data_type: timestamp(9)
+        data_tests:
+          - not_null
+      - name: role
+        description: Developer role user claimed to be
+        data_type: varchar
+        data_tests:
+          - accepted_values:
+              values: ['devops', 'frontend', 'backend']
