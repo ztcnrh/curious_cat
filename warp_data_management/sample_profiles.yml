@@ -1,0 +1,13 @@
+warp_data_management:
+  outputs:
+    dev:
+      account: '{{ env_var("SNOWFLAKE_ACCOUNT") }}'
+      authenticator: externalbrowser
+      database: '{{ env_var("SNOWFLAKE_DATABASE") }}'
+      role: '{{ env_var("SNOWFLAKE_ROLE") }}'
+      schema: DBT_SANDBOX_TIANCHI
+      threads: 6
+      type: snowflake
+      user: '{{ env_var("SNOWFLAKE_USER") }}'
+      warehouse: '{{ env_var("SNOWFLAKE_WAREHOUSE") }}'
+  target: dev

@@ -3,10 +3,14 @@ This is my submission for the Warp AE take-home assignment.
 
 ## Running the dbt project
 Execute:
-- Configure dbt profile based on your warehouse
+- Create virtual environment (e.g. python 3.11)
+- Install dbt (used dbt core 1.8 with Snowflake adaptor)
+  - Run `pip install -r warp_data_management/requirements.txt`
+- Configure dbt profile based on your warehouse setup ([sample profile](warp_data_management/sample_profiles.yml))
   - All assets are materialized under one schema for simplicity
-- dbt deps
-- dbt build
+- `cd` into `warp_data_management`
+- Run `dbt deps`
+- Run `dbt build`
 
 ## Question 1
 #### Write a SQL query to report out new users, retained users, resurrected users, and churned users by month from January through December 2022.
