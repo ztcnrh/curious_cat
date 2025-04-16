@@ -1,4 +1,4 @@
-# curious_cat
+# AE Take-Home
 This is my submission for the Warp AE take-home assignment.
 
 ## Running the dbt project
@@ -61,7 +61,7 @@ _Answer_: [View the dbt model source code](warp_data_management/models/marts/int
 | is_resurrected_user | Flag to indicate whether user is considered a resurrected user in a given month, 1=yes, 0=no. |
 | is_inactive_user | Flag to indicate whether user is considered a user that doesn't fall in any of the other categories and is inactive in a given month, 1=yes, 0=no |
 
-- This int model makes perfect sense because to get to the monthly summary this is pretty much the "preparation" transformation needed anyway.
+- This intermediate model makes good sense because to get to the monthly summary this is pretty much the "preparation" transformation needed anyway.
 - Transformations that are involved: (1). Attaching a date spine so each month including those when user did not execute commands can be summarized, this also helps with categorying users; (2). Defining analysis granularity (e.g. monthly, weekly) by finding unique dates where user executed at least one command.
 - To do weekly level analysis, we can replicate the model and change the granularity to weekly. And there might be opportunities to further modulize the dbt models.
 - User role is added to this intermediate table to allow role-specific analysis. We can also write queries to analyze improvements of user retention performance (e.g. find the % delta between months on % of users that were retained.)
@@ -80,3 +80,7 @@ Do we have further breakdown of demographics data, such as levels of dev experie
 Additionally, if we have access to quality churn surveys and/or user interviews, we try to understand whether a key capability might be missing for FEs. Are they doing anything significantly different than BEs and DevOps? What commands are they running that might be contributing to frictions? Is there a different tool they prefer and why?
 
 Lastly, to determine where resources should be allocated towards comprehensively, we might need to factor in role specific data such as acquisition cost, LTV, stickiness level, referral rate. Revenue and marketing data might help shed some light.
+
+## Extra
+
+Added a dbt [custom data test](warp_data_management/tests/test__int_user_command_engagement_summary_monthly.sql) to validate the transformation logic of [the intermediate model](warp_data_management/models/marts/intermediate/user_command_engagement_summary/int_user_command_engagement_summary_monthly.sql). Every row (user_id+month) should have a category assigned, so summing the categories should equate to the total row count. This test would help catch potential logic bugs or data quality issues from source tables.
