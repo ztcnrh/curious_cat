@@ -1,0 +1,54 @@
+version: 2
+
+models:
+  - name: int_user_command_engagement_summary_monthly
+    description: >
+      Command execution engagement data on the month level by user.
+      Tracks each user's command history since their account creation (for 2022), has details on whether a user is active in the command line each month and assigns different active status.
+    columns:
+      - name: user_id
+        description: Unique identifier for user
+        data_type: varchar
+      - name: user_role
+        description: Developer role user claimed to be
+        data_type: varchar
+      - name: user_created_month
+        description: Month of user account creation
+        data_type: date
+      - name: spine_month
+        description: Month of engagement tracking summary, on a user level this is basically every calendar month since the user's account creation
+        data_type: date
+      - name: command_event_month
+        description: Month when user executed at least one command
+        data_type: date
+      - name: is_active
+        description: Boolean flag to indicate whether user executed at least one command in a given month or not
+        data_type: boolean
+      - name: is_active_prev_month
+        description: Boolean flag to indicate whether user executed at least one command in the immediate previous month or not
+        data_type: boolean
+      - name: is_new_user
+        description: >
+          Flag to indicate whether user is considered a new user in a given month, 1=yes, 0=no
+          New user definition: A user who is using Warp within the same month of their account creation.
+        data_type: number(1,0)
+      - name: is_retained_user
+        description: >
+          Flag to indicate whether user is considered a retained user in a given month, 1=yes, 0=no
+          Retained user definition: A user who is using Warp and also used Warp the previous month.
+        data_type: number(1,0)
+      - name: is_churned_user
+        description: >
+          Flag to indicate whether user is considered a churned user in a given month, 1=yes, 0=no
+          Churned user definition: A user who used Warp the previous month but did not use Warp in the current month.
+        data_type: number(1,0)
+      - name: is_resurrected_user
+        description: >
+          Flag to indicate whether user is considered a resurrected user in a given month, 1=yes, 0=no
+          Resurrected user definition: A user who is using Warp but did not use Warp the previous month (and is not a new user).
+        data_type: number(1,0)
+      - name: is_inactive_user
+        description: >
+          Flag to indicate whether user is considered a user that doesn't fall in any of the other categories and is inactive in a given month, 1=yes, 0=no
+          Inactive user definition: A user who churned already and has had more than 1 consecutive month of not executing any commands in a given month.
+        data_type: number(1,0)

@@ -1,0 +1,25 @@
+version: 2
+
+models:
+  - name: new_lost_retained_summary_monthly
+    description: >
+      Monthly summary of user count based on the assigned categories: New, Retained, Resurrenct, Churned
+    columns:
+      - name: month
+        description: Month of summary
+        data_type: date
+      - name: new
+        description: Count of new users
+        data_type: integer
+      - name: retained
+        description: Count of retained users
+        data_type: integer
+      - name: resurrected
+        description: Count of resurrected users
+        data_type: integer
+      - name: churned
+        description: Count of churned users
+        data_type: integer
+      - name: total_user_cnt
+        description: Count of total users we have
+        data_type: integer

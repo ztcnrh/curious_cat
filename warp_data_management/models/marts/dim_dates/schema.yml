@@ -1,0 +1,12 @@
+version: 2
+
+models:
+  - name: dim_month
+    description: Month focused date dimension table where each row is a unique month as defined from the window
+    columns:
+      - name: month
+        description: month, e.g. 2022-01-01, 2022-02-01
+        data_type: date
+        data_tests:
+          - not_null
+          - unique
